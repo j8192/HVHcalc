@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            holtby village h
+        </title>
+    </head>
+    <body>
+        sessions (discount for 6+):
+        <input id="sessions" type="number">
+        <br>
+        hours:
+        <input id="hours" type="number">
+        <br>
+        do you live locally?:
+        <input id="local" type="checkbox">
+        <br>
+        tick to hire cleaning:
+        <input id="cleaning" type="checkbox">
+        <br>
+        use the kitchen:
+        <input id="kitchen" type="checkbox">
+        <br>
+        price:
+        <output id="price"></output>
+        <br>
+        <button id="confirm">calculate</button>
+        <script>
+            let sessions = document.getElementById("sessions");
+            let hours = document.getElementById("hours");
+            let local = document.getElementById("local");
+            let cleaning = document.getElementById("cleaning");
+            let kitchen = document.getElementById("kitchen");
+            let priceDisplay = document.getElementById("price");
+            let confirm = document.getElementById("confirm");
+            let price = 0;
+            priceDisplay.value = "£0";
+            function calculate() {
+                price = 0;
+                if(local.checked) {
+                    if(sessions.value >= 6) {
+                        price += sessions.value * (hours.value * 10) 
+                    } else {
+                        price += sessions.value * (hours.value * 12.5)
+                    }
+                } else {
+                    if(sessions.value >= 6) {
+                        price += sessions.value * (hours.value * 15);
+                    } else {
+                        price += sessions.value * (hours.value * 18);
+                    }
+                }
+                priceDisplay.value = "£" + price;
+            }
+            confirm.addEventListener("click", calculate);
+        </script>
+    </body>
+</html>
